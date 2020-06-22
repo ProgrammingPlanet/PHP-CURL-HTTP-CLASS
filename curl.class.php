@@ -14,11 +14,9 @@ class CurlHttp
 	
 	public function __construct()
 	{
-		$isCurlInstalled = array_search('curl',get_loaded_extensions());
-
-		if($isCurlInstalled===FALSE)
+		if(!extension_loaded('curl'))
 		{
-			throw new Exception("Module Curl is Not Installed.");
+			throw new Exception("Module Curl is Not Installed. see https://php.net/manual/curl.setup.php");
 		}
 
 		$this->ch = curl_init();
